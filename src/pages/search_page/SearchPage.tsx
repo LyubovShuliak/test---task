@@ -10,12 +10,13 @@ import {
   countries,
 } from "../../app/users/usersSlice";
 import Header from "../../components/header/Header.component";
-import Overview from "../../components/overview/OverviewUsers";
+import  Overview  from "../../components/overview/OverviewUsers";
 
 function Homepage() {
   const params = useParams();
   const dispatch = useAppDispatch();
-  const selectCountry: string[] = useAppSelector(countries);
+  const allUsers = useAppSelector(users);
+  const selectCountry = useAppSelector(countries);
 
   useEffect(() => {
     dispatch(fetchUsers());
@@ -25,7 +26,7 @@ function Homepage() {
     <div className="App">
       <Header />
       {selectCountry.map((country) => (
-        <Overview key={country} country={country} />
+        <Overview country={country} />
       ))}
     </div>
   );

@@ -10,12 +10,11 @@ import type {} from "@mui/lab/themeAugmentation";
 import { Link, useParams } from "react-router-dom";
 import createTheme from "@mui/material/styles/createTheme";
 import { ThemeProvider } from "@emotion/react";
-import { margin } from "@mui/system";
+import { User } from "../../app/users/usersSlice";
 
 interface StandardComponentProps {
-  image: string;
-  title: string;
-  description: string;
+  user: User;
+  // myRef?: React.Ref<HTMLDivElement> | null;
 }
 
 const theme = createTheme({
@@ -27,7 +26,7 @@ const theme = createTheme({
           objectFit: "scale-down",
           padding: "20px",
           backgroundColor: "cornsilk",
-          margin: 'auto'
+          margin: "auto",
         },
       },
     },
@@ -51,30 +50,27 @@ const theme = createTheme({
   },
 });
 
-export default function CardItem({
-  image,
-  title,
-  description,
-}: StandardComponentProps) {
+export const CardItem = ({ user }: StandardComponentProps) => {
+  const { picture, name, location } = user;
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <Card
+    <div>
+      {/* <ThemeProvider theme={theme}> */}
+        {/* <Card
           sx={{
             height: 300,
             display: "flex",
             width: 400,
             flexDirection: "column",
             justifyContent: "space-between",
-            margin: '20px'
+            margin: "20px",
           }}
         >
           <div>
             <CardMedia
               component="img"
               height="140"
-              image={`${image}`}
-              alt={`${title}`}
+              image={`${picture}`}
+              alt={`${name}`}
               sx={{ height: 150 }}
             />
 
@@ -95,7 +91,7 @@ export default function CardItem({
                 variant="h5"
                 component="div"
               >
-                {title}
+                {name}
               </Typography>
             </CardContent>
           </div>
@@ -110,11 +106,11 @@ export default function CardItem({
               }}
               variant="body2"
             >
-              {description}
+              {location.city}
             </Typography>
           </div>
-        </Card>
-      </ThemeProvider>
-    </>
+        </Card> */}
+      {/* </ThemeProvider> */}
+    </div>
   );
-}
+};

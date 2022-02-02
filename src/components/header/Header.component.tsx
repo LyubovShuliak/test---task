@@ -1,9 +1,8 @@
 import React, { useEffect, useRef } from "react";
+
 import "./Header.scss";
-import citySearch from "../../assets/images/city-search.svg";
 import search from "../../assets/images/search.svg";
 import { useAppDispatch } from "../../app/hooks";
-import { fetchUsers } from "../../app/users/usersFetch";
 import { filterBy, filteredUsers } from "../../app/users/usersSlice";
 
 const Header = () => {
@@ -23,11 +22,10 @@ const Header = () => {
         <input
           ref={input}
           onChange={() =>
-            null !== input.current &&
-            dispatch(filterBy(input.current.value))
+            null !== input.current && dispatch(filterBy(input.current.value))
           }
           type="text"
-          placeholder="Search by name, country, nationality..."
+          placeholder="Search by  country, city..."
           className="search_candidate__input"
         />
       </div>

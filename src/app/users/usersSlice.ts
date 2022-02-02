@@ -10,6 +10,7 @@ export type User = {
   nat: string;
   picture: string;
   name: string;
+  id: string;
 };
 
 type UsersState = { users: User[]; filteredUsers: User[]; countries: string[] };
@@ -26,12 +27,12 @@ export const userSlice = createSlice({
   reducers: {
     filterBy: (state, action) => {
       state.filteredUsers = state.users.filter(
-        (user) =>
-          user.name.includes(action.payload) ||
+        (user: User) =>
           user.location.country.includes(action.payload) ||
           user.location.city.includes(action.payload)
       );
     },
+    seeNext: (state, action) => {},
   },
   extraReducers: (builder) => {
     builder.addCase(
@@ -49,7 +50,6 @@ export const userSlice = createSlice({
 export const users = (state: RootState) => state.users.users;
 export const filteredUsers = (state: RootState) => state.users.filteredUsers;
 export const countries = (state: RootState) => state.users.countries;
-
 
 export const { filterBy } = userSlice.actions;
 

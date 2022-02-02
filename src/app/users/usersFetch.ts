@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from 'uuid';
+
 const API_URL =
-  "https://randomuser.me/api/?page=3&results=50&inc=gender,name,nat,gb,picture,cell,dob,location&nat=us,uk,de";
+  "https://randomuser.me/api/?page=3&results=150&?gender,name,gb,picture,cell,dob,location&?nat=us,uk,de";
 
 export const fetchUsers = createAsyncThunk("users/fetchAll", async () => {
   const response: any = await fetch(API_URL);
@@ -9,6 +11,7 @@ export const fetchUsers = createAsyncThunk("users/fetchAll", async () => {
     ...user,
     picture: user.picture.large,
     location: { city: user.location.city, country: user.location.country },
-    name:` ${user.name.title}.${user.name.first} ${user.name.last} `
+    name:` ${user.name.title}.${user.name.first} ${user.name.last} `,
+    id: uuidv4()
   }));
 });
